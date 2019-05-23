@@ -1,32 +1,30 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
 import About from './components/About';
 import Topics from './components/Topics';
+import Login from './components/Login';
+import LandingPage from './components/Landing';
+import NavBar from './components/Navbar';
+import Dashboard from './components/Dashboard';
 
+// https://github.com/pillarjs/path-to-regexp/tree/v1.7.0
+// they use this library to parse the urls
 
 function App() {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/topics">Topics</Link>
-          </li>
-        </ul>
+        <NavBar />
 
         <hr />
 
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={LandingPage} />
+        <Route path="/dashboard" component={Dashboard} />
         <Route path="/about" component={About} />
         <Route path="/topics" component={Topics} />
+        <Route path="/login" component={Login} />
       </div>
     </Router>
   );
