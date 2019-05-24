@@ -7,6 +7,7 @@ import LandingPage from './components/Landing';
 import NavBar from './components/Navbar';
 import Dashboard from './components/dashboard/Dashboard';
 import Register from './components/Register';
+import NoMatch from './components/NoMatch';
 
 // https://github.com/pillarjs/path-to-regexp/tree/v1.7.0
 // they use this library to parse the urls
@@ -18,12 +19,14 @@ function App() {
         <NavBar />
 
         <hr />
-
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/about" component={About} />
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} />
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/about" component={About} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+          <Route component={NoMatch} />
+        </Switch>
       </div>
     </Router>
   );

@@ -2,13 +2,11 @@ import React from 'react';
 import { Route, NavLink, withRouter } from 'react-router-dom';
 import Topic from './Topic';
 
-const Topics = ({ match }) => {
+const NavLinks = ({ match }) => {
   const links = [
     { name: 'Over view', url: '/overview' },
     { name: 'Archive', url: '/archive' },
-    { name: 'Social', url: '/social' },
     { name: 'Users', url: '/users' },
-    { name: '404 Error', url: '/404Error' },
   ];
 
   const navLinks = links.map(link => (
@@ -26,10 +24,10 @@ const Topics = ({ match }) => {
 
   return (
     <div>
-      <h2>Topics</h2>
+      <h2>Links</h2>
       <ul className="nav flex-column">{navLinks}</ul>
     </div>
   );
 };
 
-export default withRouter(Topics);
+export default withRouter(NavLinks);
