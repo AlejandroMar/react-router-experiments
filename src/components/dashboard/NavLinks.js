@@ -15,7 +15,6 @@ const NavLinks = ({ match }) => {
         className="navLink nav-link"
         activeClassName="activeNavLink"
         to={`${match.url}${link.url}`}
-        exact
       >
         {link.name}
       </NavLink>
@@ -23,8 +22,8 @@ const NavLinks = ({ match }) => {
   ));
 
   return (
-    <div>
-      <h2>Links</h2>
+    <div className="my-2">
+      <h3 className="text-center text-light p-2">Categories</h3>
       <ul className="nav flex-column">{navLinks}</ul>
     </div>
   );
