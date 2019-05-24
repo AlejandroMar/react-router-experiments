@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, NavLink, withRouter } from 'react-router-dom';
+import { Route, Link, withRouter } from 'react-router-dom';
 import Topic from './Topic';
 
 const NavLinks = ({ match }) => {
@@ -11,13 +11,9 @@ const NavLinks = ({ match }) => {
 
   const navLinks = links.map(link => (
     <li key={link.url} className="nav-item">
-      <NavLink
-        className="navLink nav-link"
-        activeClassName="activeNavLink"
-        to={`${match.url}${link.url}`}
-      >
+      <Link className="nav-link" to={`${match.url}${link.url}`}>
         {link.name}
-      </NavLink>
+      </Link>
     </li>
   ));
 
