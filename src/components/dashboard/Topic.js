@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 function Topic({ match }) {
   // the path includes the parameters as varibles with the :parameter
@@ -12,4 +13,4 @@ function Topic({ match }) {
   );
 }
 
-export default Topic;
+export default withRouter(Topic);
