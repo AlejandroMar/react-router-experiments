@@ -1,10 +1,11 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import NavLinks from './NavLinks';
 import Topic from './Topic';
 import OverView from './OverView';
 import Archive from './Archive';
 import Users from './Users';
+import NoMatch from '../NoMatch';
 
 function Dashboard({ match }) {
   return (
@@ -26,15 +27,17 @@ function Dashboard({ match }) {
                        align-items-center 
                        pt-3 pb-2 mb-3"
           />
-
-          <Route path={`${match.path}/overview`} component={OverView} />
-          <Route path={`${match.path}/archive`} component={Archive} />
-          <Route path={`${match.path}/users`} component={Users} />
-          <Route
-            exact
-            path={`${match.path}`}
-            render={() => <h3>Click on any link on the topics list</h3>}
-          />
+          <Switch>
+            <Route exact path={`${match.path}/overview`} component={OverView} />
+            <Route exact path={`${match.path}/archive`} component={Archive} />
+            <Route exact path={`${match.path}/users`} component={Users} />
+            <Route
+              exact
+              path={`${match.path}`}
+              render={() => <h3>Click on any link on the topics list</h3>}
+            />
+            <Route component={NoMatch} />
+          </Switch>
         </main>
       </div>
     </div>

@@ -20,11 +20,12 @@ function App() {
 
         <hr />
         <Switch>
+          {/* we put the exact prop to avoid nesting 404 */}
           <Route exact path="/" component={LandingPage} />
           <Route path="/dashboard" component={Dashboard} />
-          <Route path="/about" component={About} />
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
           <Route component={NoMatch} />
         </Switch>
       </div>
