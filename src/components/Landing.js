@@ -2,21 +2,22 @@ import React from 'react';
 
 function Landing() {
   return (
-    <div className="jumbotron">
-      <h1 className="display-4">Hello, world!</h1>
+    <div className="container">
+      <div className="jumbotron">
+        <h1 className="display-4">Landing Page!</h1>
 
-      <p className="lead">
-      This is a simple hero unit, a simple jumbotron-style
-      component for calling extra attention to featured content or information.
-      </p>
+        <p className="lead">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit odio!
+        </p>
 
-      <hr className="my-4" />
+        <hr className="my-4" />
 
-      <p>
-      It uses utility classes for typography and
-      spacing to space content out within the larger container.
-      </p>
-
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis
+          adipisci earum pariatur cum voluptatum est tempore obcaecati iusto
+          iure culpa.
+        </p>
+      </div>
     </div>
   );
 }

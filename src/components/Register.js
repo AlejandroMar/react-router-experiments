@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Login extends Component {
+class Register extends Component {
   state = {};
 
   render() {
@@ -8,12 +8,24 @@ class Login extends Component {
       <div className="container">
         <form>
           <div className="form-group">
-            <label htmlFor="exampleInputEmail1">
+            <label htmlFor="UserName">
+              User Name
+              <input
+                type="text"
+                className="form-control"
+                id="UserName"
+                placeholder="User Name"
+              />
+            </label>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="email">
               Email address
               <input
                 type="email"
                 className="form-control"
-                id="exampleInputEmail1"
+                id="email"
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
               />
@@ -24,13 +36,25 @@ class Login extends Component {
           </div>
 
           <div className="form-group">
-            <label htmlFor="exampleInputPassword1">
+            <label htmlFor="password1">
               Password
               <input
                 type="password"
                 className="form-control"
-                id="exampleInputPassword1"
+                id="password1"
                 placeholder="Password"
+              />
+            </label>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password2">
+              Password
+              <input
+                type="password"
+                className="form-control"
+                id="password2"
+                placeholder="Retype password"
               />
             </label>
           </div>
@@ -44,4 +68,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;
