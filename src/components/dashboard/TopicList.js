@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 function TopicList({ match, loading, topicArr, error }) {
   if (error) {
     return (
-      <div className="container">
+      <div className="col-4">
         <h4>{error}</h4>
       </div>
     );

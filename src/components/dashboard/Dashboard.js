@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import NavLinks from './NavLinks';
+import CategoryLinks from './CategoryLinks';
 import Topic from './Topic';
 import OverView from './OverView';
 import Archive from './Archive';
@@ -22,7 +22,7 @@ class Dashboard extends Component {
         <div className="row no-gutters">
           <nav className="col-2 bg-dark sidebar">
             <div className="sidebar-sticky">
-              <NavLinks />
+              <CategoryLinks />
             </div>
           </nav>
 

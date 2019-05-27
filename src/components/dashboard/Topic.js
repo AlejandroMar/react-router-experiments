@@ -48,9 +48,24 @@ class Topic extends Component {
           <TopicList topicArr={topicArr} loading={loading} error={error} />
           {/* <Route path={`${match.path}/:hello`} component={TopicDetails} /> */}
           <Route
-            path={`${match.url}/:details`}
+            path={`${match.path}/:details`}
             render={props => (
-              <TopicDetails {...props} topicArr={topicArr} loading={loading} />
+              <TopicDetails
+                {...props}
+                topicArr={topicArr}
+                loading={loading}
+                error={error}
+              />
+            )}
+          />
+
+          <Route
+            exact
+            path={`${match.path}`}
+            render={() => (
+              <div className="mt-3 text-center">
+                <h5>Please click on a link to see details</h5>
+              </div>
             )}
           />
         </div>
