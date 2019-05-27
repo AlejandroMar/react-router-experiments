@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
-function Topic({ match }) {
+class Topic extends Component {
+  state = {};
   // the path includes the parameters as varibles with the :parameter
   // the url is what you see in the navigation bar
-  console.log(match.path);
-  console.log(match.url);
-  return (
-    <div>
-      <h3>{match.params.topic}</h3>
-    </div>
-  );
+
+  render() {
+    const { match } = this.props;
+    return (
+      <div>
+        <h3>{match.params.topic}</h3>
+      </div>
+    );
+  }
 }
 
 export default withRouter(Topic);

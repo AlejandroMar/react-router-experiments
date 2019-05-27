@@ -21,9 +21,8 @@ function Dashboard({ match }) {
 
         <main role="main" className="col-10">
           <Switch>
-            <Route exact path={`${match.path}/overview`} component={OverView} />
-            <Route exact path={`${match.path}/archive`} component={Archive} />
-            <Route exact path={`${match.path}/users`} component={Users} />
+            <Route exact path={`${match.path}/:topic`} component={Topic} />
+
             <Route
               exact
               path={`${match.path}`}
