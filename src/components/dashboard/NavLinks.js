@@ -3,13 +3,6 @@ import { Route, Link, withRouter } from 'react-router-dom';
 import Topic from './Topic';
 
 const NavLinks = ({ match }) => {
-  /* "films": "https://swapi.co/api/films/",
-    "people": "https://swapi.co/api/people/",
-    "planets": "https://swapi.co/api/planets/",
-    "species": "https://swapi.co/api/species/",
-    "starships": "https://swapi.co/api/starships/",
-    "vehicles": "https://swapi.co/api/vehicles/"
- */
   const links = [
     { name: 'Films', url: '/films' },
     { name: 'People', url: '/people' },
