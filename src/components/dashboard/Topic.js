@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import TopicList from './TopicList';
 import TopicDetails from './TopicDetails';
@@ -40,34 +42,51 @@ class Topic extends Component {
   };
 
   render() {
-    const { match } = this.props;
+    const { match, location } = this.props;
+    console.log(match.params);
     const { topicArr, loading, error } = this.state;
     return (
       <>
         <div className="row">
-          <TopicList topicArr={topicArr} loading={loading} error={error} />
+          <div className="col-4">
+            <TopicList topicArr={topicArr} loading={loading} error={error} />
+          </div>
           {/* <Route path={`${match.path}/:hello`} component={TopicDetails} /> */}
-          <Route
-            path={`${match.path}/:details`}
-            render={props => (
-              <TopicDetails
-                {...props}
-                topicArr={topicArr}
-                loading={loading}
-                error={error}
-              />
-            )}
-          />
+          {/* transitionGroup wraps children in a div so I can put the col to the it */}
+          <div className="col-8">
+            <TransitionGroup component={null}>
+              <CSSTransition
+                key={location.key}
+                classNames="fade"
+                timeout={3000}
+                exit={false}
+              >
+                <Switch location={location}>
+                  <Route
+                    path={`${match.path}/:details`}
+                    render={props => (
+                      <TopicDetails
+                        {...props}
+                        topicArr={topicArr}
+                        loading={loading}
+                        error={error}
+                      />
+                    )}
+                  />
 
-          <Route
-            exact
-            path={`${match.path}`}
-            render={() => (
-              <div className="mt-3 text-center">
-                <h5>Please click on a link to see details</h5>
-              </div>
-            )}
-          />
+                  <Route
+                    exact
+                    path={`${match.path}`}
+                    render={() => (
+                      <div className="mt-3 text-center">
+                        <h5>Please click on a link to see details</h5>
+                      </div>
+                    )}
+                  />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          </div>
         </div>
       </>
     );

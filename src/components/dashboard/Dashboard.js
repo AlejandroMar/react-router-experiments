@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import CategoryLinks from './CategoryLinks';
 import Topic from './Topic';
-import OverView from './OverView';
-import Archive from './Archive';
-import Users from './Users';
 import NoMatch from '../NoMatch';
 
 class Dashboard extends Component {
