@@ -1,26 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import FilmDetails from './FilmDetails';
+import PeopleDetails from './PeopleDetails';
+import PlanetDetails from './PlanetDetails';
+import SpeciesDetails from './SpeciesDetails';
 
-const comps = {
-  films: filmDetail => (
-    <div className="mt-4">
-      <p>Title: {filmDetail.title}</p>
-      <p>Director: {filmDetail.director}</p>
-      <p>Opening: {filmDetail.opening_crawl}</p>
-    </div>
-  ),
-  people: peopleDetail => (
-    <div className="mt-4">
-      <p>Name: {peopleDetail.name}</p>
-      <p>Gender: {peopleDetail.gender}</p>
-      <p>Height: {peopleDetail.height}</p>
-    </div>
-  ),
-};
+const revealComponents = (function() {
+  function films(details) {
+    return <FilmDetails details={details} />;
+  }
+  function people(details) {
+    return <PeopleDetails details={details} />;
+  }
+  function planets(details) {
+    return <PlanetDetails details={details} />;
+  }
+  function species(details) {
+    return <SpeciesDetails details={details} />;
+  }
+  return {
+    films,
+    people,
+    planets,
+    species,
+  };
+})();
 
 function TopicDetails({ match, topicArr, error }) {
   const [details, setDetails] = useState({});
 
-  console.log(match);
   const filterArray = topicArr => {
     const filteredDetails = topicArr.filter(topic => {
       if (topic.title) {
@@ -28,7 +35,6 @@ function TopicDetails({ match, topicArr, error }) {
       }
       return topic.name === match.params.details;
     });
-
     if (filteredDetails.length > 0) {
       setDetails(filteredDetails[0]);
     }
@@ -39,13 +45,24 @@ function TopicDetails({ match, topicArr, error }) {
   });
 
   const toRender = (() => {
-    if (match.params.topic in comps) {
-      return comps[match.params.topic](details);
+    if (
+      match.params.topic in revealComponents &&
+      Object.keys(details).length > 0
+    ) {
+      return revealComponents[match.params.topic](details);
     }
-    return <h4>Not found</h4>;
+    return null;
   })();
 
-  return <div className="col-8">{toRender}</div>;
+  return (
+    <div className="col-8">
+      {error ? (
+        <h5>Not found</h5>
+      ) : (
+        <div>{toRender || <h5>Loading...</h5>}</div>
+      )}
+    </div>
+  );
 }
 
 export default TopicDetails;
