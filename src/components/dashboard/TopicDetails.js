@@ -1,6 +1,6 @@
 import React from 'react';
 
-import revealDetailsComponents from './revealDetailsComponents';
+import revealDetailsComponents from ".";
 
 class TopicDetails extends React.Component {
   state = {
