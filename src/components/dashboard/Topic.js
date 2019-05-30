@@ -13,12 +13,16 @@ class Topic extends Component {
     error: '',
   };
 
+  _isMounted = false;
+
   async componentDidMount() {
+    this._isMounted = true;
     const { topic } = this.props.match.params;
     this.fetchData(topic);
   }
 
   async componentDidUpdate(prevState) {
+    this._isMounted = true;
     const { topic: oldTopic } = prevState.match.params;
     const { topic } = this.props.match.params;
     if (oldTopic !== topic) {
@@ -26,16 +30,22 @@ class Topic extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   fetchData = async topic => {
     try {
       await this.setState({ loading: true });
       const fetchList = await fetch(`https://swapi.co/api/${topic}`);
       const result = await fetchList.json();
-      await this.setState({
-        topicArr: result.results,
-        loading: false,
-        error: '',
-      });
+      if (this._isMounted) {
+        await this.setState({
+          topicArr: result.results,
+          loading: false,
+          error: '',
+        });
+      }
     } catch (error) {
       this.setState({ error: 'Not Found' });
     }
@@ -43,8 +53,8 @@ class Topic extends Component {
 
   render() {
     const { match, location } = this.props;
-    console.log(match.params);
     const { topicArr, loading, error } = this.state;
+
     return (
       <>
         <div className="row">
@@ -53,12 +63,14 @@ class Topic extends Component {
           </div>
           {/* <Route path={`${match.path}/:hello`} component={TopicDetails} /> */}
           {/* transitionGroup wraps children in a div so I can put the col to the it */}
+          {/* key={location.pathname.split('/')[3]} */}
+
           <div className="col-8">
             <TransitionGroup component={null}>
               <CSSTransition
                 key={location.key}
                 classNames="fade"
-                timeout={3000}
+                timeout={500}
                 exit={false}
               >
                 <Switch location={location}>
