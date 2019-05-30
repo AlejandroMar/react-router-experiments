@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Landing() {
+function Landing({ loggedIn }) {
   return (
     <div className="container">
       <div className="jumbotron">
@@ -9,6 +10,29 @@ function Landing() {
         <p className="lead">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit odio!
         </p>
+
+        <div className="row">
+          {loggedIn || (
+            <button type="button" className="btn-secondary nav-link mr-2">
+              <Link to="/login" className="text-white">
+                Login
+              </Link>
+            </button>
+          )}
+          {loggedIn ? (
+            <button type="button" className="btn-secondary nav-link">
+              <Link to="/logout" className="text-white">
+                Logout
+              </Link>
+            </button>
+          ) : (
+            <button type="button" className="btn-secondary nav-link">
+              <Link to="/register" className="text-white">
+                Register
+              </Link>
+            </button>
+          )}
+        </div>
 
         <hr className="my-4" />
 
