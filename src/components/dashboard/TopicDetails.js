@@ -1,6 +1,7 @@
 import React from 'react';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-import revealDetailsComponents from ".";
+import RevealDetailsComponents from './RevealDetailsComponents';
 
 class TopicDetails extends React.Component {
   state = {
@@ -14,9 +15,16 @@ class TopicDetails extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    const { topicArr: oldTopicArr } = prevProps;
+    const { topicArr } = this.props;
     const { details: oldDetails } = prevProps.match.params;
     const { details } = this.props.match.params;
     if (oldDetails !== details) {
+      const { topicArr } = this.props;
+      console.log('update Topic detail');
+      this.filterArray(topicArr);
+    }
+    if (oldTopicArr !== topicArr) {
       const { topicArr } = this.props;
       console.log('update Topic detail');
       this.filterArray(topicArr);
@@ -48,11 +56,11 @@ class TopicDetails extends React.Component {
   };
 
   render() {
-    const toRender = (() => {
+    const ComptoRender = (() => {
       const { match } = this.props;
       const { details } = this.state;
-      if (match.params.topic in revealDetailsComponents && !details.msg) {
-        return revealDetailsComponents[match.params.topic](details);
+      if (match.params.topic in RevealDetailsComponents && !details.msg) {
+        return RevealDetailsComponents[match.params.topic](details);
       }
       return null;
     })();
@@ -61,7 +69,11 @@ class TopicDetails extends React.Component {
     const { error } = this.props;
     return (
       <>
-        {error ? <h5>Not found</h5> : <>{toRender || <h5>{details.msg}</h5>}</>}
+        {error ? (
+          <h5>Not found</h5>
+        ) : (
+          <>{ComptoRender || <h5>{details.msg}</h5>}</>
+        )}
       </>
     );
   }

@@ -7,7 +7,7 @@ import SpeciesDetails from './SpeciesDetails';
 import StarshipDetails from './StarshipDetails';
 import VehicleDetails from './VehicleDetails';
 
-const revealDetailsComponents = (function() {
+const RevealDetailsComponents = (function() {
   function films(details) {
     return <FilmDetails details={details} />;
   }
@@ -36,4 +36,4 @@ const revealDetailsComponents = (function() {
   };
 })();
 
-export default revealDetailsComponents;
+export default RevealDetailsComponents;
