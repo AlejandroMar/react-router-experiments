@@ -1,13 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-import revealDetailsComponents from './helpers/revealDetailsComponents';
+import revealDetailsComponents from './revealDetailsComponents';
 
-function TopicDetails({ match, topicArr, error }) {
-  const [details, setDetails] = useState({});
+class TopicDetails extends React.Component {
+  state = {
+    details: {},
+  };
 
-  const filterArray = topicArr => {
+  async componentDidMount() {
+    const { topicArr } = this.props;
+    this.filterArray(topicArr);
+  }
+
+  async componentDidUpdate(prevProps) {
+    const { topicArr: oldTopicArr } = prevProps;
+    const { topicArr } = this.props;
+    if (oldTopicArr !== topicArr) {
+      this.filterArray(topicArr);
+    }
+  }
+
+  filterArray = topicArr => {
+    console.log('hello', topicArr);
+    const { match } = this.props;
+    // const { details } = this.state;
     if (topicArr.length === 0) {
-      setDetails({ msg: 'Loading...' });
+      this.setState({ details: { msg: 'Loading...' } });
     } else {
       const filteredDetails = topicArr.filter(topic => {
         if (topic.title) {
@@ -16,29 +34,33 @@ function TopicDetails({ match, topicArr, error }) {
         return topic.name === match.params.details;
       });
       if (filteredDetails.length > 0) {
-        setDetails(filteredDetails[0]);
+        this.setState({ details: filteredDetails[0] });
       } else {
-        setDetails({ msg: 'Not Found' });
+        this.setState({ details: { msg: 'Not Found' } });
       }
     }
   };
 
-  useEffect(() => {
-    filterArray(topicArr);
-  });
+  render() {
+    const toRender = (() => {
+      console.log('fuck');
+      const { match } = this.props;
+      const { details } = this.state;
+      if (match.params.topic in revealDetailsComponents && !details.msg) {
+        return revealDetailsComponents[match.params.topic](details);
+      }
+      return null;
+    })();
 
-  const toRender = (() => {
-    if (match.params.topic in revealDetailsComponents && !details.msg) {
-      return revealDetailsComponents[match.params.topic](details);
-    }
-    return null;
-  })();
-
-  return (
-    <>
-      {error ? <h5>Not found</h5> : <>{toRender || <h5>{details.msg}</h5>}</>}
-    </>
-  );
+    console.log(this.toRender);
+    const { details } = this.state;
+    const { error } = this.props;
+    return (
+      <>
+        {error ? <h5>Not found</h5> : <>{toRender || <h5>{details.msg}</h5>}</>}
+      </>
+    );
+  }
 }
 
 export default TopicDetails;

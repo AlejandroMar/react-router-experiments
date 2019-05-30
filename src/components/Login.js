@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import auth from './helpers/auth';
 
 class Login extends Component {
   state = {};
 
   render() {
+    const { loggedIn, location, login } = this.props;
+    const { target } = location.state || {
+      target: { pathname: '/dashboard' },
+    };
+
+    if (loggedIn) {
+      return <Redirect to={target} />;
+    }
+
     return (
       <div className="container">
-        <form>
+        <form onSubmit={login}>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">
               Email address

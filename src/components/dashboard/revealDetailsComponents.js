@@ -1,11 +1,11 @@
 import React from 'react';
 
-import FilmDetails from '../FilmDetails';
-import PeopleDetails from '../PeopleDetails';
-import PlanetDetails from '../PlanetDetails';
-import SpeciesDetails from '../SpeciesDetails';
-import StarshipDetails from '../StarshipDetails';
-import VehicleDetails from '../VehicleDetails';
+import FilmDetails from './FilmDetails';
+import PeopleDetails from './PeopleDetails';
+import PlanetDetails from './PlanetDetails';
+import SpeciesDetails from './SpeciesDetails';
+import StarshipDetails from './StarshipDetails';
+import VehicleDetails from './VehicleDetails';
 
 const revealDetailsComponents = (function() {
   function films(details) {

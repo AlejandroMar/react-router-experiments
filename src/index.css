@@ -26,3 +26,6 @@ label{
   transition: opacity 250ms ease-in;
 }
 
+.sidebar{
+  min-height: 70vh;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
+function Navbar({ loggedIn }) {
   return (
     <div className="container">
       <div className="row">
@@ -22,12 +22,20 @@ function Navbar() {
             </Link>
           </li>
         </ul>
-        <Link to="/login" className="nav-link col-2">
-          Login
-        </Link>
-        <Link to="/register" className="nav-link col-2">
-          Register
-        </Link>
+        {loggedIn || (
+          <Link to="/login" className="nav-link col-2">
+            Login
+          </Link>
+        )}
+        {loggedIn ? (
+          <Link to="/logout" className="nav-link col-2">
+            Logout
+          </Link>
+        ) : (
+          <Link to="/register" className="nav-link col-2">
+            Register
+          </Link>
+        )}
       </div>
     </div>
   );
