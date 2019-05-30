@@ -16,7 +16,7 @@ class PeopleDetails extends Component {
 
   componentDidUpdate(prevProps) {
     this._isMounted = true;
-    console.log('Component updated');
+    // console.log('Component updated');
     const { details } = this.props;
     if (prevProps.details.homeworld !== details.homeworld) {
       this.fetchHomeWorld(details);
@@ -24,7 +24,6 @@ class PeopleDetails extends Component {
   }
 
   componentWillUnmount() {
-    console.log('Unmounting');
     this._isMounted = false;
   }
 

@@ -10,6 +10,10 @@ class Dashboard extends Component {
     categoryList: [],
   };
 
+  componentWillUnmount() {
+    console.log('Unmounting dashboard');
+  }
+
   render() {
     const { match } = this.props;
     return (

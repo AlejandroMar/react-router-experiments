@@ -8,16 +8,23 @@ class TopicDetails extends React.Component {
   };
 
   componentDidMount() {
+    console.log('mounting TopicDetails');
     const { topicArr } = this.props;
     this.filterArray(topicArr);
   }
 
   componentDidUpdate(prevProps) {
-    const { topicArr: oldTopicArr } = prevProps;
-    const { topicArr } = this.props;
-    if (oldTopicArr !== topicArr) {
+    const { details: oldDetails } = prevProps.match.params;
+    const { details } = this.props.match.params;
+    if (oldDetails !== details) {
+      const { topicArr } = this.props;
+      console.log('update Topic detail');
       this.filterArray(topicArr);
     }
+  }
+
+  componentWillUnmount() {
+    console.log('Unmounting TopicDetails');
   }
 
   filterArray = topicArr => {

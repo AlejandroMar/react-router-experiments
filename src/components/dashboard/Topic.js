@@ -31,7 +31,7 @@ class Topic extends Component {
   }
 
   componentWillUnmount() {
-    // console.log('Unmounting');
+    console.log('Unmounting Topic');
     this._isMounted = false;
   }
 
@@ -67,38 +67,29 @@ class Topic extends Component {
           {/* key={location.pathname.split('/')[3]} */}
 
           <div className="col-8">
-            <TransitionGroup component={null}>
-              <CSSTransition
-                key={location.key}
-                classNames="fade"
-                timeout={500}
-                exit={false}
-              >
-                <Switch location={location}>
-                  <Route
-                    path={`${match.path}/:details`}
-                    render={props => (
-                      <TopicDetails
-                        {...props}
-                        topicArr={topicArr}
-                        loading={loading}
-                        error={error}
-                      />
-                    )}
+            <Switch>
+              <Route
+                path={`${match.path}/:details`}
+                render={props => (
+                  <TopicDetails
+                    {...props}
+                    topicArr={topicArr}
+                    loading={loading}
+                    error={error}
                   />
+                )}
+              />
 
-                  <Route
-                    exact
-                    path={`${match.path}`}
-                    render={() => (
-                      <div className="mt-3 text-center">
-                        <h5>Please click on a link to see details</h5>
-                      </div>
-                    )}
-                  />
-                </Switch>
-              </CSSTransition>
-            </TransitionGroup>
+              <Route
+                exact
+                path={`${match.path}`}
+                render={() => (
+                  <div className="mt-3 text-center">
+                    <h5>Please click on a link to see details</h5>
+                  </div>
+                )}
+              />
+            </Switch>
           </div>
         </div>
       </>
