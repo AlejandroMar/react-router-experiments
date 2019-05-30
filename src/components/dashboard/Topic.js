@@ -15,13 +15,13 @@ class Topic extends Component {
 
   _isMounted = false;
 
-  async componentDidMount() {
+  componentDidMount() {
     this._isMounted = true;
     const { topic } = this.props.match.params;
     this.fetchData(topic);
   }
 
-  async componentDidUpdate(prevState) {
+  componentDidUpdate(prevState) {
     this._isMounted = true;
     const { topic: oldTopic } = prevState.match.params;
     const { topic } = this.props.match.params;
@@ -31,6 +31,7 @@ class Topic extends Component {
   }
 
   componentWillUnmount() {
+    // console.log('Unmounting');
     this._isMounted = false;
   }
 

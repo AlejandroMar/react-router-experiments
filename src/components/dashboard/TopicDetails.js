@@ -7,12 +7,12 @@ class TopicDetails extends React.Component {
     details: {},
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     const { topicArr } = this.props;
     this.filterArray(topicArr);
   }
 
-  async componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps) {
     const { topicArr: oldTopicArr } = prevProps;
     const { topicArr } = this.props;
     if (oldTopicArr !== topicArr) {
@@ -21,7 +21,6 @@ class TopicDetails extends React.Component {
   }
 
   filterArray = topicArr => {
-    console.log('hello', topicArr);
     const { match } = this.props;
     // const { details } = this.state;
     if (topicArr.length === 0) {
@@ -43,7 +42,6 @@ class TopicDetails extends React.Component {
 
   render() {
     const toRender = (() => {
-      console.log('fuck');
       const { match } = this.props;
       const { details } = this.state;
       if (match.params.topic in revealDetailsComponents && !details.msg) {
@@ -52,7 +50,6 @@ class TopicDetails extends React.Component {
       return null;
     })();
 
-    console.log(this.toRender);
     const { details } = this.state;
     const { error } = this.props;
     return (
